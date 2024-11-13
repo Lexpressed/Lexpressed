@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  primaryButton: {
+    text: string;
+    href: string;
+  };
+  secondaryButton?: {
+    text: string;
+    href: string;
+  };
+}
+
+const { title, description, primaryButton, secondaryButton } = Astro.props;
+---
+
+<div class="bg-gradient-to-br from-lexpressed-navy to-lexpressed-blue text-white p-8 rounded-xl shadow-lg">
+  <h2 class="text-2xl font-bold mb-4">{title}</h2>
+  <p class="mb-6 text-gray-100 leading-relaxed">
+    {description}
+  </p>
+  <div class="flex gap-4">
+    <a 
+      href={primaryButton.href} 
+      class="bg-lexpressed-ochre text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-colors duration-300"
+    >
+      {primaryButton.text}
+    </a>
+    {secondaryButton && (
+      <a 
+        href={secondaryButton.href}
+        class="bg-white text-lexpressed-navy px-6 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+      >
+        {secondaryButton.text}
+      </a>
+    )}
+  </div>
+</div>
