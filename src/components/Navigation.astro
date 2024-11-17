@@ -13,34 +13,67 @@ const navItems = [
 <nav class="bg-white shadow-lg">
   <div class="max-w-7xl mx-auto px-4">
     <div class="flex justify-between h-16">
-      <div class="flex items-center">
+      <div class="flex">
         <div class="flex-shrink-0 flex items-center">
           <a href="/" class="flex items-center">
             <Logo />
           </a>
         </div>
-        <div class="ml-4">
-          <span class="text-xl font-bold text-lexpressed-navy">Lexpressed</span>
-        </div>
       </div>
-      <div class="-mr-2 flex sm:hidden">
+      <div class="flex items-center">
+        <span class="text-xl font-bold text-lexpressed-navy">Lexpressed</span>
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex md:items-center md:space-x-8">
+        {navItems.map(item => (
+          <a
+            href={item.href}
+            class="inline-flex items-center px-1 pt-1 text-sm font-medium text-lexpressed-navy hover:text-lexpressed-ochre transition-colors duration-200"
+          >
+            {item.text}
+          </a>
+        ))}
+      </div>
+
+      <!-- Mobile Navigation Button -->
+      <div class="flex items-center md:hidden">
         <button
-          onclick="toggleMenu()"
           type="button"
-          class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
+          id="mobileMenuButton"
+          class="inline-flex items-center justify-center p-2 rounded-md text-lexpressed-navy hover:text-lexpressed-ochre focus:outline-none"
           aria-controls="mobile-menu"
           aria-expanded="false"
         >
-          <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed -->
+          <svg
+            id="menuIcon"
+            class="block h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
             <path
-              class="menu-icon"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
               d="M4 6h16M4 12h16M4 18h16"
             />
+          </svg>
+          <!-- Icon when menu is open -->
+          <svg
+            id="closeIcon"
+            class="hidden h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
             <path
-              class="close-icon hidden"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
@@ -49,29 +82,63 @@ const navItems = [
           </svg>
         </button>
       </div>
-      <div class="hidden sm:ml-6 sm:flex sm:space-x-8" id="mobile-menu">
-        {navItems.map(item => (
-          <a
-            href={item.href}
-            class="inline-flex items-center px-1 pt-1 text-sm font-medium text-lexpressed-navy hover:text-lexpressed-ochre"
-          >
-            {item.text}
-          </a>
-        ))}
-      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="hidden md:hidden" id="mobileMenu">
+    <div class="px-2 pt-2 pb-3 space-y-1 bg-white shadow-lg">
+      {navItems.map(item => (
+        <a
+          href={item.href}
+          class="block px-3 py-2 rounded-md text-base font-medium text-lexpressed-navy hover:text-lexpressed-ochre hover:bg-gray-50 transition-colors duration-200"
+        >
+          {item.text}
+        </a>
+      ))}
     </div>
   </div>
 </nav>
 
 <script>
-  function toggleMenu() {
-    const menu = document.getElementById('mobile-menu');
-    const menuIcon = document.querySelector('.menu-icon');
-    const closeIcon = document.querySelector('.close-icon');
-    const isExpanded = menu.classList.contains('hidden');
+  const mobileMenuButton = document.getElementById('mobileMenuButton');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIcon = document.getElementById('menuIcon');
+  const closeIcon = document.getElementById('closeIcon');
 
-    menu.classList.toggle('hidden', !isExpanded);
-    menuIcon.classList.toggle('hidden', !isExpanded);
-    closeIcon.classList.toggle('hidden', isExpanded);
+  let isMenuOpen = false;
+
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    
+    if (mobileMenu && menuIcon && closeIcon) {
+      if (isMenuOpen) {
+        mobileMenu.classList.remove('hidden');
+        menuIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    }
   }
+
+  // Toggle menu on button click
+  mobileMenuButton?.addEventListener('click', toggleMenu);
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    if (isMenuOpen && mobileMenuButton && !mobileMenuButton.contains(target) && mobileMenu && !mobileMenu.contains(target)) {
+      toggleMenu();
+    }
+  });
+
+  // Close menu on window resize (if switching to desktop view)
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768 && isMenuOpen) { // 768px is the md breakpoint
+      toggleMenu();
+    }
+  });
 </script>
