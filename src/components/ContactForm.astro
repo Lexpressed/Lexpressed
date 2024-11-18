@@ -91,21 +91,6 @@ const { className = "" } = Astro.props;
       required
       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-lexpressed-blue focus:border-transparent"
     ></textarea>
-  </div>
-
-  <div class="flex items-center">
-    <input
-      type="checkbox"
-      id="consent"
-      name="consent"
-      required
-      class="h-4 w-4 text-lexpressed-blue focus:ring-lexpressed-blue border-gray-300 rounded"
-    />
-    <label for="consent" class="ml-2 block text-sm text-gray-600">
-      I consent to Lexpressed storing my contact information for future communication.
-    </label>
-  </div>
-
   <div>
     <button
       type="submit"
@@ -141,7 +126,7 @@ const { className = "" } = Astro.props;
         const formData = {
           from_name: `${(document.getElementById('firstName') as HTMLInputElement).value} ${(document.getElementById('lastName') as HTMLInputElement).value}`,
           reply_to: (document.getElementById('email') as HTMLInputElement).value,
-          
+
           organization: (document.getElementById('organization') as HTMLInputElement).value,
           inquiry_type: (document.getElementById('inquiryType') as HTMLSelectElement).value,
           message: (document.getElementById('message') as HTMLTextAreaElement).value,
