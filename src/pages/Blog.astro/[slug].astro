@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/ui/Button.astro';
+import { getPostBySlug } from '../../lib/wordpress';
+
+const { slug } = Astro.params;
+const article = await getPostBySlug(slug);
+---
+
+<BaseLayout title={article.title}>
+  <main class="py-12 px-4 sm:px-6 lg:px-8">
+    <article class="max-w-3xl mx-auto">
+      <div class="mb-8">
+        <Button href="/project-details" variant="secondary">
+          <svg
+            class="h-5 w-5 mr-2"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          Back to Articles
+        </Button>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md p-8">
+        <div class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-sm text-lexpressed-ochre font-medium">{article.category}</span>
+            <span class="text-gray-300">•</span>
+            <span class="text-sm text-gray-500">{article.readingTime}</span>
+          </div>
+          
+          <h1 class="text-4xl font-bold text-lexpressed-navy mb-6">{article.title}</h1>
+          
+          <div class="flex items-center justify-between pb-6 border-b border-gray-200">
+            <div class="flex items-center gap-2">
+              <div class="w-10 h-10 rounded-full bg-lexpressed-blue/10 flex items-center justify-center">
+                <span class="text-lexpressed-blue font-medium">
+                  {article.author.charAt(0)}
+                </span>
+              </div>
+              <div>
+                <div class="font-medium text-gray-900">{article.author}</div>
+                <time class="text-sm text-gray-500">{article.date}</time>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="prose prose-lg max-w-none" set:html={article.content} />
+      </div>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .prose {
+    --tw-prose-body: #374151;
+    --tw-prose-headings: #1a365d;
+    --tw-prose-links: #2563eb;
+    --tw-prose-bold: #111827;
+    --tw-prose-counters: #6b7280;
+    --tw-prose-bullets: #d1d5db;
+    --tw-prose-hr: #e5e7eb;
+    --tw-prose-quotes: #111827;
+    --tw-prose-quote-borders: #e5e7eb;
+    --tw-prose-captions: #6b7280;
+    --tw-prose-code: #111827;
+    --tw-prose-pre-code: #e5e7eb;
+    --tw-prose-pre-bg: #1f2937;
+    --tw-prose-th-borders: #d1d5db;
+    --tw-prose-td-borders: #e5e7eb;
+  }
+</style>

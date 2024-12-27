@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string;
+  excerpt: string;
+  author: string;
+  date: string;
+  category: string;
+  readingTime: string;
+  slug: string;
+}
+
+const { title, excerpt, author, date, category, readingTime, slug } = Astro.props;
+---
+
+<article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
+  <div class="p-6">
+    <div class="flex items-center gap-2 mb-4">
+      <span class="text-sm text-lexpressed-ochre font-medium">{category}</span>
+      <span class="text-gray-300">•</span>
+      <span class="text-sm text-gray-500">{readingTime}</span>
+    </div>
+    
+    <h3 class="text-xl font-semibold text-lexpressed-navy mb-2 hover:text-lexpressed-blue transition-colors">
+      <a href={`/blog/${slug}`}>{title}</a>
+    </h3>
+    
+    <p class="text-gray-600 mb-4 line-clamp-2">{excerpt}</p>
+    
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-full bg-lexpressed-blue/10 flex items-center justify-center">
+          <span class="text-lexpressed-blue font-medium text-sm">
+            {author.charAt(0)}
+          </span>
+        </div>
+        <span class="text-sm text-gray-600">{author}</span>
+      </div>
+      <time class="text-sm text-gray-500">{date}</time>
+    </div>
+  </div>
+</article>
