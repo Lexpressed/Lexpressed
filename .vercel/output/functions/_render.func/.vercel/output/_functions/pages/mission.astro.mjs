@@ -1,9 +1,9 @@
 /* empty css                                 */
 import { c as createComponent, r as renderTemplate, d as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_CqNM1uTQ.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_DYS5UENZ.mjs';
-import { $ as $$PageHeader } from '../chunks/PageHeader_mM0395dr.mjs';
-import { $ as $$CallToAction } from '../chunks/CallToAction_X4RWzfrw.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DQWRk3BW.mjs';
+import { $ as $$PageHeader } from '../chunks/PageHeader_CDGPClCV.mjs';
+import { $ as $$CallToAction } from '../chunks/CallToAction_DC1Fa7-k.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Mission = createComponent(($$result, $$props, $$slots) => {
@@ -52,12 +52,12 @@ At Lexpressed, our mission is to provide a platform for innovative legal researc
     text: "Join Our Mission",
     href: "/contact"
   }, "secondaryButton": {
-    text: "View Our Impact",
+    text: "View Our Imact",
     href: "/projects"
   } })} </div> ` })}`;
-}, "/Users/nicolasposa/Documents/projects/lexpressed2/Lexpressed/src/pages/mission.astro", void 0);
+}, "/Users/pradyunkrishnan/Desktop/Lexpressed/src/pages/mission.astro", void 0);
 
-const $$file = "/Users/nicolasposa/Documents/projects/lexpressed2/Lexpressed/src/pages/mission.astro";
+const $$file = "/Users/pradyunkrishnan/Desktop/Lexpressed/src/pages/mission.astro";
 const $$url = "/mission";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
