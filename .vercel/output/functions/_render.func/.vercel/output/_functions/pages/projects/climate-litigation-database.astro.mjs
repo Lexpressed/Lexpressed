@@ -6,9 +6,9 @@ export { renderers } from '../../renderers.mjs';
 
 const $$ClimateLitigationDatabase = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate``;
-}, "/Users/pradyunkrishnan/Desktop/Lexpressed/src/pages/projects/climate-litigation-database.astro", void 0);
+}, "/Users/nicolasposa/Documents/projects/lexpressed2/Lexpressed/src/pages/projects/climate-litigation-database.astro", void 0);
 
-const $$file = "/Users/pradyunkrishnan/Desktop/Lexpressed/src/pages/projects/climate-litigation-database.astro";
+const $$file = "/Users/nicolasposa/Documents/projects/lexpressed2/Lexpressed/src/pages/projects/climate-litigation-database.astro";
 const $$url = "/projects/climate-litigation-database";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

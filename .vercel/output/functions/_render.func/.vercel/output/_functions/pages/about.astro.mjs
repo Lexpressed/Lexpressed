@@ -1,10 +1,10 @@
 /* empty css                                 */
 import { c as createComponent, r as renderTemplate, d as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_CqNM1uTQ.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_DQWRk3BW.mjs';
-import { $ as $$PageHeader } from '../chunks/PageHeader_CDGPClCV.mjs';
-import { $ as $$Card } from '../chunks/Card_CNaVrsSO.mjs';
-import { $ as $$CallToAction } from '../chunks/CallToAction_DC1Fa7-k.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DYS5UENZ.mjs';
+import { $ as $$PageHeader } from '../chunks/PageHeader_mM0395dr.mjs';
+import { $ as $$Card } from '../chunks/Card_Bwa6WQpr.mjs';
+import { $ as $$CallToAction } from '../chunks/CallToAction_X4RWzfrw.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$About = createComponent(($$result, $$props, $$slots) => {
@@ -55,9 +55,9 @@ Our Output Areas
     text: "View Projects",
     href: "/projects"
   } })} </div> ` })}`;
-}, "/Users/pradyunkrishnan/Desktop/Lexpressed/src/pages/about.astro", void 0);
+}, "/Users/nicolasposa/Documents/projects/lexpressed2/Lexpressed/src/pages/about.astro", void 0);
 
-const $$file = "/Users/pradyunkrishnan/Desktop/Lexpressed/src/pages/about.astro";
+const $$file = "/Users/nicolasposa/Documents/projects/lexpressed2/Lexpressed/src/pages/about.astro";
 const $$url = "/about";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

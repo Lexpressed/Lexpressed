@@ -1,7 +1,7 @@
 /* empty css                                 */
 import { c as createComponent, r as renderTemplate, d as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_CqNM1uTQ.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_DQWRk3BW.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DYS5UENZ.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {
@@ -22,9 +22,9 @@ Conducting groundbreaking research to support high-impact litigation cases.
 </p> </div> <div class="text-center"> <h3 class="text-xl font-bold text-lexpressed-ochre mb-4">Knowledge Exchange</h3> <p class="text-gray-600">
 Building global networks of legal innovators and practitioners in impact litigation.
 </p> </div> </div> </section> ` })}`;
-}, "/Users/pradyunkrishnan/Desktop/Lexpressed/src/pages/index.astro", void 0);
+}, "/Users/nicolasposa/Documents/projects/lexpressed2/Lexpressed/src/pages/index.astro", void 0);
 
-const $$file = "/Users/pradyunkrishnan/Desktop/Lexpressed/src/pages/index.astro";
+const $$file = "/Users/nicolasposa/Documents/projects/lexpressed2/Lexpressed/src/pages/index.astro";
 const $$url = "";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

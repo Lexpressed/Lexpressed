@@ -1,9 +1,9 @@
 /* empty css                                 */
 import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as addAttribute, b as createAstro, d as renderComponent } from '../chunks/astro/server_CqNM1uTQ.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_DQWRk3BW.mjs';
-import { $ as $$PageHeader } from '../chunks/PageHeader_CDGPClCV.mjs';
-import { $ as $$Card } from '../chunks/Card_CNaVrsSO.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DYS5UENZ.mjs';
+import { $ as $$PageHeader } from '../chunks/PageHeader_mM0395dr.mjs';
+import { $ as $$Card } from '../chunks/Card_Bwa6WQpr.mjs';
 import 'clsx';
 export { renderers } from '../renderers.mjs';
 
@@ -27,7 +27,7 @@ Message
 </label> <textarea id="message" name="message" rows="6" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-lexpressed-blue focus:border-transparent"></textarea> <div> <button type="submit" id="submitButton" class="w-full md:w-auto px-8 py-3 bg-lexpressed-blue text-white rounded-lg hover:bg-opacity-90 transition-colors duration-300">
 Send Message
 </button> <p id="formStatus" class="mt-2 text-sm"></p> </div> </div></form>`;
-}, "/Users/pradyunkrishnan/Desktop/Lexpressed/src/components/ContactForm.astro", void 0);
+}, "/Users/nicolasposa/Documents/projects/lexpressed2/Lexpressed/src/components/ContactForm.astro", void 0);
 
 const $$Contact = createComponent(($$result, $$props, $$slots) => {
   const contactMethods = [
@@ -48,9 +48,9 @@ const $$Contact = createComponent(($$result, $$props, $$slots) => {
     }
   ];
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "Contact" }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "PageHeader", $$PageHeader, { "title": "Contact Us", "description": "Get in touch with our team to discuss collaboration opportunities, research initiatives, or general inquiries." })} ${maybeRenderHead()}<div class="max-w-4xl mx-auto px-4"> <div class="grid md:grid-cols-3 gap-6 mb-12"> ${contactMethods.map((method) => renderTemplate`${renderComponent($$result2, "Card", $$Card, { ...method })}`)} </div> <div class="bg-white rounded-xl shadow-lg p-8"> <h2 class="text-2xl font-bold text-lexpressed-navy mb-6">Send us a Message</h2> ${renderComponent($$result2, "ContactForm", $$ContactForm, {})} </div> </div> ` })}`;
-}, "/Users/pradyunkrishnan/Desktop/Lexpressed/src/pages/contact.astro", void 0);
+}, "/Users/nicolasposa/Documents/projects/lexpressed2/Lexpressed/src/pages/contact.astro", void 0);
 
-const $$file = "/Users/pradyunkrishnan/Desktop/Lexpressed/src/pages/contact.astro";
+const $$file = "/Users/nicolasposa/Documents/projects/lexpressed2/Lexpressed/src/pages/contact.astro";
 const $$url = "/contact";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
