@@ -38,6 +38,14 @@
 		{
 			"src": "^\\/$",
 			"dest": "_render"
-		}
+		},
+		{
+			"functions": {
+			  "api/*": {
+				"includeFiles": ["node_modules/**"]
+			  }
+			}
+		  }
+		  
 	]
 }
