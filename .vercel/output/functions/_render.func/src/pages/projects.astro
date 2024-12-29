@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CallToAction from '../components/CallToAction.astro';
+
+const projects = [
+  {
+    title: "Climate Litigation Database",
+    category: "Research",
+    status: "Ongoing",
+    description: "A comprehensive database of climate-related litigation cases worldwide, analyzing trends and outcomes.",
+    impact: "Supporting legal practitioners and researchers with valuable case studies and precedents.",
+    link: "/projects/climate-litigation-database",
+    stats: {
+      cases: 250,
+      jurisdictions: 45,
+      documents: 1200
+    }
+  },
+];
+---
+
+<Layout title="Projects">
+  <PageHeader
+    title="Our Projects"
+    description="Explore our current and past projects focused on advancing strategic litigation."
+  />
+
+    <!-- Project Cards -->
+    <div class="grid md:grid-cols-2 gap-8 mb-12">
+      {projects.map(project => (
+        <ProjectCard {...project} />
+      ))}
+    </div>
+
+    <CallToAction
+      title="Get Involved"
+      description="We welcome collaboration from students, legal professionals, and organizations interested in contributing to our projects or proposing new initiatives."
+      primaryButton={{
+        text: "Contact Us",
+        href: "/contact"
+      }}
+      secondaryButton={{
+        text: "Learn More",
+        href: "/about"
+      }}
+    />
+  </div>
+</Layout>

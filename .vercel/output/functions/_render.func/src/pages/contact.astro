@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Card from '../components/Card.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+const contactMethods = [
+  {
+    title: "General Inquiries",
+    description: "For general questions about Lexpressed and our work",
+    icon: "📧"
+  },
+  {
+    title: "Project Collaboration",
+    description: "Discuss potential partnerships and joint initiatives",
+    icon: "🤝"
+  },
+  {
+    title: "Research Opportunities",
+    description: "Join our research teams or propose new research areas",
+    icon: "🔍"
+  }
+];
+---
+
+<Layout title="Contact">
+  <PageHeader
+    title="Contact Us"
+    description="Get in touch with our team to discuss collaboration opportunities, research initiatives, or general inquiries."
+  />
+
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+      {contactMethods.map(method => (
+        <Card {...method} />
+      ))}
+    </div>
+
+    <div class="bg-white rounded-xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-lexpressed-navy mb-6">Send us a Message</h2>
+      <ContactForm />
+    </div>
+  </div>
+</Layout>
