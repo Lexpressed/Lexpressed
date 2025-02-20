@@ -5,12 +5,35 @@ import { supabase } from '../../lib/supabase';
 const { slug } = Astro.params;
 console.log('Slug:', slug);
 
-const { data: blogPost, error } = await supabase
-  .from('blog_posts')
-  .select('*')
-  .eq('slug', slug)
-  .eq('published', true)
-  .single();
+---
+import Layout from '../../layouts/Layout.astro';
+import { supabase } from '../../lib/supabase';
+
+const { slug } = Astro.params;
+console.log('🔍 Slug from URL:', slug);
+
+// Check environment variables are loading
+console.log('🟢 Supabase URL:', import.meta.env.VITE_SUPABASE_URL);
+console.log('🟢 Supabase Anon Key:', import.meta.env.VITE_SUPABASE_ANON_KEY);
+
+try {
+  const { data: blogPost, error } = await supabase
+    .from('blog_posts')
+    .select('*')
+    .ilike('slug', slug)
+    .eq('published', true)
+    .single();
+
+  if (error) {
+    console.error('❌ Error fetching blog post from Supabase:', error);
+  }
+
+  console.log('✅ Blog post:', blogPost);
+} catch (err) {
+  console.error('🔥 Unexpected error:', err);
+}
+---
+
 
 if (error || !blogPost) {
   console.error('Error fetching blog post:', error);
