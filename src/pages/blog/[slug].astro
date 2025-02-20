@@ -34,12 +34,6 @@ try {
 }
 ---
 
-
-if (error || !blogPost) {
-  console.error('Error fetching blog post:', error);
-  return Astro.response.status(404, 'Not Found');
-}
-
 const { title, content, abstract, category, author_name, created_at: date, image_url, reading_time } = blogPost;
 
 const authorName = author_name || 'Unknown Author';
