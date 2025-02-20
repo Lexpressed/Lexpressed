@@ -1,0 +1,67 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { supabase } from '../../lib/supabase';
+
+const { slug } = Astro.params;
+console.log('Slug:', slug);
+
+const { data: blogPost, error } = await supabase
+  .from('blog_posts')
+  .select('*')
+  .eq('slug', slug)
+  .eq('published', true)
+  .single();
+
+if (error || !blogPost) {
+  console.error('Error fetching blog post:', error);
+  return Astro.response.status(404, 'Not Found');
+}
+
+const { title, content, abstract, category, author_name, created_at: date, image_url, reading_time } = blogPost;
+
+const authorName = author_name || 'Unknown Author';
+
+---
+
+<Layout title={title}>
+  <article class="max-w-3xl mx-auto p-8 font-serif text-gray-900 leading-relaxed">
+    <!-- Cover Image -->
+    {image_url && <img src={image_url} alt={title} class="w-full h-72 object-cover rounded-xl mb-8 shadow-md" />}
+
+    <!-- Title -->
+    <h1 class="text-5xl font-extrabold mb-6">{title}</h1>
+
+    <!-- Meta Information -->
+    <div class="flex justify-between items-center text-lg text-gray-600 mb-4">
+      <div>
+        <span>By <span class="text-[#bd7316] font-semibold">{authorName}</span></span> |
+        <span>{new Date(date).toLocaleDateString()}</span> |
+        <span>{reading_time} min read</span>
+      </div>
+      <!-- Category Tag -->
+      <span class="inline-block bg-[#202d3e] text-white text-sm font-semibold px-4 py-1 rounded-lg shadow-sm uppercase tracking-wide">{category}</span>
+    </div>
+
+    <!-- Abstract -->
+    {abstract && (
+      <section class="mt-6 p-6 bg-gray-100 border-l-4 border-[#bd7316] rounded-lg shadow-sm">
+        <h2 class="text-2xl font-semibold mb-4">Abstract</h2>
+        <p>{abstract}</p>
+      </section>
+    )}
+<section class="mt-8 prose lg:prose-xl">
+  {content.split("\n\n").map((block) => {
+    // Check for Markdown-style headings
+    if (block.startsWith("# ")) {
+      return <h2 class="text-3xl font-bold mt-8 mb-4">{block.replace("# ", "")}</h2>;
+    } else if (block.startsWith("## ")) {
+      return <h3 class="text-2xl font-semibold mt-6 mb-3">{block.replace("## ", "")}</h3>;
+    } else if (block.startsWith("### ")) {
+      return <h4 class="text-xl font-medium mt-4 mb-2">{block.replace("### ", "")}</h4>;
+    }
+    return <p class="mt-4">{block}</p>;
+  })}
+</section>
+
+  </article>
+</Layout>

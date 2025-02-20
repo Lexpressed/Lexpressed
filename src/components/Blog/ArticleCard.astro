@@ -1,41 +1,83 @@
 ---
-interface Props {
-  title: string;
-  excerpt: string;
-  author: string;
-  date: string;
-  category: string;
-  readingTime: string;
-  slug: string;
+// Define the props for the ArticleCard component
+export interface Props {
+ title: string;
+ excerpt: string;
+ category: string;
+ reading_time: number;
+ author_name: string;
+ slug: string;
+ created_at: string;
+ image_url?: string;
 }
 
-const { title, excerpt, author, date, category, readingTime, slug } = Astro.props;
+
+// Destructure the props
+const {
+ title,
+ excerpt,
+ category,
+ reading_time,
+ author_name,
+ slug,
+ created_at,
+ image_url
+} = Astro.props;
+console.log('📦 ArticleCard props:', Astro.props);
+
+
+
+
+// Format the date for better readability
+const formattedDate = new Date(created_at).toLocaleDateString('en-US', {
+ year: 'numeric',
+ month: 'long',
+ day: 'numeric'
+});
 ---
 
-<article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
-  <div class="p-6">
-    <div class="flex items-center gap-2 mb-4">
-      <span class="text-sm text-lexpressed-ochre font-medium">{category}</span>
-      <span class="text-gray-300">•</span>
-      <span class="text-sm text-gray-500">{readingTime}</span>
-    </div>
-    
-    <h3 class="text-xl font-semibold text-lexpressed-navy mb-2 hover:text-lexpressed-blue transition-colors">
-      <a href={`/blog/${slug}`}>{title}</a>
-    </h3>
-    
-    <p class="text-gray-600 mb-4 line-clamp-2">{excerpt}</p>
-    
-    <div class="flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-full bg-lexpressed-blue/10 flex items-center justify-center">
-          <span class="text-lexpressed-blue font-medium text-sm">
-            {author.charAt(0)}
-          </span>
-        </div>
-        <span class="text-sm text-gray-600">{author}</span>
-      </div>
-      <time class="text-sm text-gray-500">{date}</time>
-    </div>
-  </div>
+
+<article class="shadow-lg rounded-lg overflow-hidden bg-white transition-all duration-300 hover:shadow-xl">
+ {image_url && (
+   <div class="aspect-video w-full overflow-hidden">
+     <img
+       src={image_url}
+       alt={title}
+       class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+     />
+   </div>
+ )}
+
+
+ <div class="p-6">
+   <!-- Category Badge -->
+   <div class="mb-4">
+     <span class="bg-lexpressed-blue/10 text-lexpressed-blue px-3 py-1 rounded-full text-sm font-medium">
+       {category}
+     </span>
+   </div>
+
+
+   <!-- Title -->
+   <h3 class="text-xl font-bold text-lexpressed-navy mb-3 hover:text-lexpressed-ochre transition-colors">
+     <a href={`/blog/${slug}`}>{title}</a>
+   </h3>
+
+
+   <!-- Excerpt -->
+   <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
+     {excerpt}
+   </p>
+
+
+   <!-- Meta info -->
+   <div class="flex justify-between items-center text-sm border-t border-gray-100 pt-4">
+     <p class="font-medium text-lexpressed-ochre">{author_name}</p>
+     <div class="flex items-center gap-4 text-gray-500">
+       <span>{reading_time} min read</span>
+       <span>•</span>
+       <time datetime={created_at}>{formattedDate}</time>
+     </div>
+   </div>
+ </div>
 </article>

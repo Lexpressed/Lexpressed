@@ -1,0 +1,96 @@
+/*
+  # Blog System Schema
+
+  1. New Tables
+    - `blog_posts`
+      - `id` (uuid, primary key)
+      - `title` (text)
+      - `content` (text)
+      - `excerpt` (text)
+      - `author_id` (uuid, references auth.users)
+      - `category` (text)
+      - `image_url` (text)
+      - `reading_time` (integer)
+      - `created_at` (timestamptz)
+      - `updated_at` (timestamptz)
+      - `published` (boolean)
+      - `slug` (text, unique)
+
+    - `blog_tags`
+      - `id` (uuid, primary key)
+      - `name` (text, unique)
+      - `created_at` (timestamptz)
+
+    - `blog_posts_tags`
+      - `post_id` (uuid, references blog_posts)
+      - `tag_id` (uuid, references blog_tags)
+      - Primary key (post_id, tag_id)
+
+  2. Security
+    - Enable RLS on all tables
+    - Add policies for authenticated users to manage their posts
+    - Add policies for public read access to published posts
+*/
+
+-- Create blog_posts table
+CREATE TABLE IF NOT EXISTS blog_posts (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  title text NOT NULL,
+  content text NOT NULL,
+  excerpt text,
+  author_id uuid REFERENCES auth.users NOT NULL,
+  category text NOT NULL,
+  image_url text,
+  reading_time integer,
+  created_at timestamptz DEFAULT now(),
+  updated_at timestamptz DEFAULT now(),
+  published boolean DEFAULT false,
+  slug text UNIQUE NOT NULL,
+  CONSTRAINT valid_category CHECK (category IN ('Case Commentary', 'Research', 'Analysis', 'News'))
+);
+
+-- Create blog_tags table
+CREATE TABLE IF NOT EXISTS blog_tags (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name text UNIQUE NOT NULL,
+  created_at timestamptz DEFAULT now()
+);
+
+-- Create blog_posts_tags junction table
+CREATE TABLE IF NOT EXISTS blog_posts_tags (
+  post_id uuid REFERENCES blog_posts ON DELETE CASCADE,
+  tag_id uuid REFERENCES blog_tags ON DELETE CASCADE,
+  PRIMARY KEY (post_id, tag_id)
+);
+
+-- Enable RLS
+ALTER TABLE blog_posts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE blog_tags ENABLE ROW LEVEL SECURITY;
+ALTER TABLE blog_posts_tags ENABLE ROW LEVEL SECURITY;
+
+-- Policies for blog_posts
+CREATE POLICY "Public can view published posts" ON blog_posts
+  FOR SELECT USING (published = true);
+
+CREATE POLICY "Authors can manage their own posts" ON blog_posts
+  FOR ALL USING (auth.uid() = author_id);
+
+-- Policies for blog_tags
+CREATE POLICY "Public can view tags" ON blog_tags
+  FOR SELECT TO authenticated USING (true);
+
+CREATE POLICY "Authors can create tags" ON blog_tags
+  FOR INSERT TO authenticated WITH CHECK (true);
+
+-- Policies for blog_posts_tags
+CREATE POLICY "Public can view post tags" ON blog_posts_tags
+  FOR SELECT TO authenticated USING (true);
+
+CREATE POLICY "Authors can manage post tags" ON blog_posts_tags
+  FOR ALL USING (
+    EXISTS (
+      SELECT 1 FROM blog_posts 
+      WHERE blog_posts.id = blog_posts_tags.post_id 
+      AND blog_posts.author_id = auth.uid()
+    )
+  );
