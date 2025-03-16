@@ -6,12 +6,25 @@ import CallToAction from '../components/CallToAction.astro';
 
 const projects = [
   {
-    title: "Climate Litigation Database",
+    title: "The Climate Files",
     category: "Research",
     status: "Ongoing",
     description: "A comprehensive database of climate-related litigation cases worldwide, analyzing trends and outcomes.",
     impact: "Supporting legal practitioners and researchers with valuable case studies and precedents.",
     link: "/projects/climate-litigation-database",
+    stats: {
+      cases: 250,
+      jurisdictions: 45,
+      documents: 1200
+    }
+  },
+  {
+    title: "The Data Docket",
+    category: "Research",
+    status: "Upcoming",
+    description: "A global repository of data privacy laws, landmark cases, and regulatory actions, mapping the evolving landscape of data protection.",
+    impact: "Empowering legal professionals, policymakers, and researchers with in-depth insights on data governance, digital rights, and the future of privacy regulation.",
+    link: "/projects/regulating-ai",
     stats: {
       cases: 250,
       jurisdictions: 45,
@@ -24,7 +37,7 @@ const projects = [
 <Layout title="Projects">
   <PageHeader
     title="Our Projects"
-    description="Explore our current and past projects focused on advancing strategic litigation."
+    description="Explore our current and past projects focused on advancing the social function of law "
   />
 
     <!-- Project Cards -->

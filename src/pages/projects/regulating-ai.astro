@@ -5,7 +5,7 @@ import ArticleCard from '../../components/Blog/ArticleCard.astro';
 import { supabase } from '../../lib/supabase';
 
 const { data: articles, error } = await supabase
-  .from('blog_posts')
+  .from('blog_ai')
   .select('*')
   .order('created_at', { ascending: false });
 
@@ -14,13 +14,13 @@ if (error) {
 }
 ---
 
-<Layout title="The Climate Files">
+<Layout title="The Data Docket">
   <!-- Header Section -->
   <div class="max-w-7xl mx-auto px-4">
     <div class="bg-white rounded-xl shadow-lg p-8 mb-12">
-      <h1 class="text-4xl font-bold text-lexpressed-navy mb-4">The Climate Files</h1>
+      <h1 class="text-4xl font-bold text-lexpressed-navy mb-4">The Data Docket</h1>
       <p class="text-xl text-gray-600 leading-relaxed">
-        Explore a curated collection of case commentaries, articles, and opinion pieces focused on advancing climate justice through strategic litigation.
+        The Data Docket is a platform for critical analysis and discussion on data privacy rights, AI governance, and digital regulation. Through articles and expert insights, it bridges legal theory with real-world challenges in the evolving data protection landscape.
       </p>
     </div>
 
