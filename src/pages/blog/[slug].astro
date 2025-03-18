@@ -52,7 +52,7 @@ const authorName = author_name || 'Unknown Author';
     <!-- Meta Information -->
     <div class="flex justify-between items-center text-lg text-gray-600 mb-4">
       <div>
-        <span>By <span class="text-[#bd7316] font-semibold">{authorName}</span></span> |
+        <span>By <a href={`/team#${authorName.toLowerCase().replace(/\s+/g, '-')}`} class="text-lexpressed-ochre font-semibold hover:text-lexpressed-blue transition-colors">{authorName}</a></span> |
         <span>{new Date(date).toLocaleDateString()}</span> |
         <span>{reading_time} min read</span>
       </div>

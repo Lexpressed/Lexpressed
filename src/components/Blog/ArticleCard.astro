@@ -29,6 +29,8 @@ const formattedDate = new Date(created_at).toLocaleDateString('en-US', {
  month: 'long',
  day: 'numeric'
 });
+const authorName = author_name || 'Unknown Author';
+const authorSlug = authorName.toLowerCase().replace(/\s+/g, '-');
 ---
 
 <article class="shadow-lg rounded-lg overflow-hidden bg-white transition-all duration-300 hover:shadow-xl h-full flex flex-col">
@@ -62,13 +64,16 @@ const formattedDate = new Date(created_at).toLocaleDateString('en-US', {
     </p>
 
     <!-- Meta info -->
-    <div class="flex justify-between items-center text-sm border-t border-gray-100 pt-4 mt-auto">
-      <p class="font-medium text-lexpressed-ochre">{author_name}</p>
-      <div class="flex items-center gap-4 text-gray-500">
-        <span>{reading_time} min read</span>
-        <span>•</span>
-        <time datetime={created_at}>{formattedDate}</time>
-      </div>
-    </div>
+<div class="flex justify-between items-center text-sm border-t border-gray-100 pt-4 mt-auto">
+  <a 
+    href={author_name ? `/team#${author_name.trim().toLowerCase().replace(/\s+/g, '-')}` : '#'} 
+    class="font-medium text-lexpressed-ochre hover:text-lexpressed-blue transition-colors"
+  >
+    {author_name || 'Unknown Author'}
+  </a>
+  <div class="flex items-center gap-4 text-gray-500">
+    <span>{reading_time} min read</span>
+    <span>•</span>
+    <time datetime={created_at}>{formattedDate}</time>
   </div>
-</article>
+</div>

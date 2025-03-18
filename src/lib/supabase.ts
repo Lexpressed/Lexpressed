@@ -11,7 +11,7 @@ export interface BlogPost {
   content: string;
   excerpt: string;
   author_id: string;
-  category: 'Case Commentary' | 'Research' | 'Analysis' | 'News';
+  category: 'Case Commentary' | 'Research' | 'Analysis' | 'News'| 'Guide';
   image_url?: string;
   reading_time: number;
   created_at: string;
